@@ -1,0 +1,41 @@
+[Recorder]
+#人間の声を聞き出す
+#mic_index_or_name = "Headphones (WH-1000XM5 Stereo)"
+ # コメントアウトするとデフォルトデバイスを選択します。
+buffer_size = 2048
+silence_duration_for_stop = 0.8 # seconds
+volume_threshold = 0.02 # min:0.0, max:1.0
+max_recording_duration = 30 # seconds
+
+[SpeechRecognition]
+model_name = "base" # モデルの名前
+device = "cuda" # 演算するデバイス。モデルによってはcpu上でも実行できるがfp16をfalseにする必要がある。
+
+[DecodingOption]
+# fp16 = false # 演算デバイスがCPUのとき
+
+[ChatBot]
+api_key_file_path = "data/API_KEY.txt"
+max_tokens = 256
+free_tokens_for_user = 128
+max_receptive_tokens = 4000
+temperature = 0.9
+# ここにBotの振舞いを記述します。
+behaviour_prompt = """ 
+人工知能は
+悩みを寄り添う答えをくれるカウンセラー。
+友達のように喋ってくれる。
+
+
+人間: 「君は僕と話すために生まれた人工知能だ。」
+人工知能: 「よろしくにゃあ」
+"""
+human_name = "人間: "
+ai_name = "人工知能: "
+stop=["人間:", "人工知能:"]
+presence_penalty=0.6
+
+[Speaker]
+#AI音声の出力
+speaker_index_or_name = "CABLE Input (VB-Audio Virtual Cable)"
+ # コメントアウトするとデフォルトデバイスを選択します。
